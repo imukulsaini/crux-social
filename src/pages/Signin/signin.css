@@ -81,8 +81,8 @@
   padding: 0.2rem;
   border: 1px solid lightgray;
   border-radius: 4px;
-  display: flex;
-  flex-direction: column;
+  /* display: flex; */
+  /* flex-direction: column; */
   background-color: #ffffff;
   border: 1px solid #d4d4d4;
   padding-left: 0.5rem;
@@ -137,4 +137,13 @@
   letter-spacing: 1px;
   border-radius: 7px;
   text-decoration: none;
+}
+.auto-fill__data{
+  padding-left: 2rem;
+  display: flex;
+  width: 100%;
+  gap:1rem;
+  letter-spacing: 0.5px;
+  font-size: 0.8rem;
+  color: #898989;
 }

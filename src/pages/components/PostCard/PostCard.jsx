@@ -8,7 +8,6 @@ import {
   postAddedInBookMark,
   postRemoveFromBookmark,
 } from "../../../reducers/post/PostSlice";
-
 import { LikePost } from "./components/LikePost";
 import { RemoveBookmark } from "./components/RemoveBookmark";
 import NoProfilePic from "../../../assets/NoProfilePic.png";
@@ -34,6 +33,7 @@ export function PostCard({
     postBy: { avatar, username },
   } = post;
   const navigate = useNavigate();
+
   const dispatch = useDispatch();
 
   function openLikeModal() {
@@ -84,9 +84,12 @@ export function PostCard({
           </div>
 
           <div className="post__user-info">
-            <span 
-            onClick={()=>navigate(`/${username}`)}
-            className="post__owner-name">{username}</span>
+            <span
+              onClick={() => navigate(`/${username}`)}
+              className="post__owner-name"
+            >
+              {username}
+            </span>
             <span className="post__created-at">{format(createdAt)}</span>
           </div>
         </div>

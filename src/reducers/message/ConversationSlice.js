@@ -2,10 +2,10 @@ import { createSlice } from "@reduxjs/toolkit";
 import { getConversation, makeAConversation } from "../../api/message/ConversationApi";
 
 const initialState = {
-  status: "idle",
   members: [],
   conversationRoom: [],
   createStatus: "idle",
+  getStatus :"idle"
 };
 
 const conversationSlice = createSlice({
@@ -14,20 +14,19 @@ const conversationSlice = createSlice({
   reducers: {},
   extraReducers: {
     [getConversation.pending]: (state, action) => {
-
-      state.status = "pending";
+      state.getStatus = "pending";
     },
     [getConversation.fulfilled]: (state, action) => {
-      state.status = "fulfilled";
+      state.getStatus = "fulfilled";
 
       state.conversationRoom = action.payload.conversation;
     },
     [getConversation.rejected]: (state, action) => {
-      state.status= "rejected";
+      state.getStatus= "rejected";
     },
 
     [makeAConversation.pending]: (state, action) => {
-      state.createStatus = "loading";
+      state.createStatus = "pending";
     },
     [makeAConversation.fulfilled]: (state, action) => {
       state.createStatus = "fulfilled";

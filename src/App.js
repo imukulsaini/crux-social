@@ -98,7 +98,7 @@ function App() {
         <PrivateRoute path="/post/:postID" element={<PostID />} />
         <PrivateRoute path="/messages" element={<Messages />} />
         <PrivateRoute path="/notifications" element={<Notification />} />
-        <PrivateRoute path="/search" element={<Search />} />
+        <PrivateRoute path="/search" element={<Search />}/>
 
         <PrivateRoute path="/settings" element={<AccountSettings />}>
           <Route index element={<ProfileSettings />} />
@@ -107,13 +107,14 @@ function App() {
           <Route path="delete" element={<DeleteUserAccount />} />
           <Route path="*" element={<NoMatch />} />
         </PrivateRoute>
+        
 
-        <Route path="/:username" element={<ProfilePage />}>
-          <Route index element={<UserPostsShow />} />
+        <PrivateRoute path="/:username" element={<ProfilePage />}>
+          <PrivateRoute index element={<UserPostsShow />} />
           <PrivateRoute path="bookmark" element={<UserBookmarkShow />} />
           <PrivateRoute path="likes" element={<UserLikesShow />} />
           <Route path="*" element={<NoMatch />} />
-        </Route>
+        </PrivateRoute>
       </Routes>
     </div>
   );

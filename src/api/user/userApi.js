@@ -130,10 +130,14 @@ export const deleteUserAccount = createAsyncThunk(
 export const getUserInfoByUsername = createAsyncThunk(
   "users/getUserInfoByUsername",
   async (apiPermission, { rejectWithValue }) => {
-    const { username } = apiPermission;
+    const { username ,token } = apiPermission;
+
+    const headers = {
+      authorization: token,
+    };
     const url = `${API_KEY}/profile/${username}`;
     try {
-      const userResponse = await axios.get(url);
+      const userResponse = await axios.get(url, { headers });
       return userResponse.data;
     } catch (error) {
       const message = checkErrorAndReturnMessage(error);
@@ -141,7 +145,6 @@ export const getUserInfoByUsername = createAsyncThunk(
     }
   }
 );
-
 
 export const searchUser = createAsyncThunk(
   "users/searchUser",

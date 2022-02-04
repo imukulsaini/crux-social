@@ -2,6 +2,7 @@ import { createAsyncThunk } from "@reduxjs/toolkit";
 import axios from "axios";
 import { API_KEY } from "../../utils";
 import { checkErrorAndReturnMessage } from "../util/errorHandler";
+
 export const getConversation = createAsyncThunk(
   "conversation/getConversation",
   async (userData, { rejectWithValue }) => {
@@ -31,7 +32,7 @@ export const getConversation = createAsyncThunk(
 );
 
 export const makeAConversation = createAsyncThunk(
-  "conversation/getConversation",
+  "conversation/makeAConversation",
   async (userInfo, { rejectWithValue }) => {
     const { senderID, receiverID, userID, token } = userInfo;
 

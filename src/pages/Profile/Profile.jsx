@@ -29,7 +29,7 @@ import { NoMatch } from "../components/NoMatch/NoMatch";
 
 
 export function ProfilePage() {
-  const { userData, profileData, profileStatus } = useSelector(
+  const { userData, profileData, profileStatus ,token } = useSelector(
     (state) => state.users
   );
   const dispatch = useDispatch();
@@ -91,7 +91,7 @@ export function ProfilePage() {
       setLoading("fulfilled");
     }
     if (isAdminProfile === false) {
-      dispatch(getUserInfoByUsername({ username }));
+      dispatch(getUserInfoByUsername({ username ,token}));
     }
   }, [isAdminProfile, username]);
 

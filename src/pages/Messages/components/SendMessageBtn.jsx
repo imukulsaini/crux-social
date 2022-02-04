@@ -18,7 +18,8 @@ export function SendMessageBtn({ inputValue, conversationID, clearInputText }) {
   const dispatch = useDispatch();
 
   function sendMessage() {
-    const text = inputValue.value;
+
+    const text = inputValue.current.value;
     const a = conversationRoom.filter((con) => con._id == conversationID);
     const { members } = a[0];
     const getReceiverID = members.filter((user) => user._id !== userID);

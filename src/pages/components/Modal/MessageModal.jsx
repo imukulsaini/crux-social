@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import Modal from "react-modal";
 import { useDispatch, useSelector } from "react-redux";
 import { useSocket } from "../../../context/socket";
@@ -7,7 +7,7 @@ import { makeAConversation } from "../../../api/message/ConversationApi";
 import { getUserMessage } from "../../../api/message/MessageApi";
 import { SendMessageBtn } from "../../Messages/components/SendMessageBtn";
 import { ShowUserMessage } from "../../Messages/components/ShowUserMessage";
-
+import { LoadingSpinner } from "../Spinner/LoadingSpinner";
 export function MessageModal({
   receiverID,
   isMessageModal,
@@ -34,8 +34,11 @@ export function MessageModal({
   const { socket } = useSocket();
   const dispatch = useDispatch();
   const { userID, token } = useSelector((state) => state.users);
-  const [text, setText] = useState("");
+  const messageInputModalRef = useRef();
 
+  function clearInputText() {
+    messageInputModalRef.current.value = "";
+  }
   useEffect(() => {
     if (isMessageModal) {
       dispatch(
@@ -47,7 +50,6 @@ export function MessageModal({
         })
       );
     }
-
   }, [isMessageModal]);
 
   useEffect(() => {
@@ -72,7 +74,6 @@ export function MessageModal({
       socket?.off("getNewMessage");
     };
   }, [socket]);
-
   return (
     <Modal
       isOpen={isMessageModal}
@@ -80,24 +81,26 @@ export function MessageModal({
       style={messageModalStyles}
       contentLabel="Message Modal"
       ariaHideApp={false}
-
-
     >
       <h3 className="Modal__heading"> Messages </h3>
+      {createStatus === "pending" && (
+        <span className="spinner-indicator">
+          <LoadingSpinner isDefaultCss={true} size={"25"} />
+        </span>
+      )}
       {createStatus === "fulfilled" && (
         <>
           <ShowUserMessage />
           <div className="message__conversation-input">
             <input
-              value={text}
-              onChange={(event) => setText(event.target.value)}
+              ref={messageInputModalRef}
               className="conversation-input"
               placeholder="send message"
             />
             <SendMessageBtn
-              text={text}
+              inputValue={messageInputModalRef}
               conversationID={conversationRoom[0]?._id}
-              setText={setText}
+              clearInputText={clearInputText}
             />
           </div>
         </>

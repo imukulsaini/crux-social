@@ -1,3 +1,49 @@
+ 
+## Live Project - [Crux](https://crux-social.netlify.app/login)
+## Backend - [Link](https://github.com/imukulsaini/social-backend)
+# Credentials
+* username : zoldyck21
+* password : password1@
+
+# Tech Stack 
+
+ * Fronted 
+   * HTML5
+   * CSS
+   * ReactJs
+   * Router - React Router v6 
+   * Redux toolkit
+ 
+ * Backend
+    * Express-Js
+    * Mongoose
+    * MongoDB
+    * Authentication - JWT 
+    * web sockets 
+
+
+ # Features
+ 
+ * Create Post 
+ * Search User by username and Name
+ * Like post
+ * Bookmark post 
+ * Comments system
+ * Follow And UnFollow User
+ * Chat in real time 
+ * Watch User Is Online or Not RealTime
+ * Real Time Notifications
+ * Update User Profile and Password
+
+
+
+
+
+
+
+
+
+
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app), using the [Redux](https://redux.js.org/) and [Redux Toolkit](https://redux-toolkit.js.org/) template.
 
 ## Available Scripts

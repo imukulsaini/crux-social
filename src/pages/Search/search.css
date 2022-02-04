@@ -1,0 +1,35 @@
+.search-page {
+  width: 100%;
+  height: 100vh;
+  display: grid;
+  grid-template-rows: 4.5rem auto;
+  grid-template-columns: 4fr 30rem 4fr;
+  grid-template-areas:
+    "nav nav nav"
+    "left searchMain right";
+}
+
+.nav {
+  width: 100%;
+  grid-area: nav;
+}
+.search-page__main {
+  border-left: 1px solid #efefef;
+  border-right: 1px solid #efefef;
+  padding: 0.5rem;
+  grid-area: searchMain;
+  background-color: #fafafa;
+}
+.search-page__left {
+  grid-area: left;
+  background-color: #fafafa;
+}
+.search-page__right {
+  grid-area: right;
+  background-color: #fafafa;
+}
+.search__heading{
+  padding: 1rem;
+  letter-spacing: 0.5px;
+}
+

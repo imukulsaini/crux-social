@@ -1,14 +1,14 @@
 import { useEffect, useState } from "react";
 import { GoComment } from "react-icons/go";
 import { useDispatch, useSelector } from "react-redux";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { format } from "timeago.js";
 import { useSocket } from "../../../context/socket";
 import {
   postAddedInBookMark,
-  
   postRemoveFromBookmark,
 } from "../../../reducers/post/PostSlice";
+
 import { LikePost } from "./components/LikePost";
 import { RemoveBookmark } from "./components/RemoveBookmark";
 import NoProfilePic from "../../../assets/NoProfilePic.png";
@@ -33,6 +33,7 @@ export function PostCard({
     createdAt,
     postBy: { avatar, username },
   } = post;
+  const navigate = useNavigate();
   const dispatch = useDispatch();
 
   function openLikeModal() {
@@ -83,7 +84,9 @@ export function PostCard({
           </div>
 
           <div className="post__user-info">
-            <span className="post__owner-name">{username}</span>
+            <span 
+            onClick={()=>navigate(`/${username}`)}
+            className="post__owner-name">{username}</span>
             <span className="post__created-at">{format(createdAt)}</span>
           </div>
         </div>

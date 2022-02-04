@@ -1,4 +1,4 @@
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import Modal from "react-modal";
 import { useDispatch, useSelector } from "react-redux";
 import { getUserFollowers } from "../../../api/user/userFollowersApi";
@@ -14,10 +14,14 @@ export function FollowersModal({
   const { userFollowers, status } = useSelector((state) => state.followers);
 
   const { userID, token } = useSelector((state) => state.users);
+  const [followerList, setFollowers] = useState([]);
+  const [loading, setLoading] = useState("idle");
 
   const dispatch = useDispatch();
 
   useEffect(() => {
+    setLoading("pending");
+
     if (isAdmin && isFollowerModal === true) {
       dispatch(getUserFollowers({ userID, token }));
     }
@@ -36,8 +40,16 @@ export function FollowersModal({
     },
   };
 
-  const followerList =
-    status === "fulfilled" && isAdmin ? userFollowers : followers;
+  useEffect(() => {
+    const result = isAdmin ? userFollowers : followers;
+    setFollowers(result);
+  }, [followers, userFollowers]);
+
+  useEffect(() => {
+    if (followerList.length > 0 && isFollowerModal) {
+      setLoading("fulfilled");
+    }
+  }, [followerList, isFollowerModal]);
 
   return (
     <Modal
@@ -46,34 +58,29 @@ export function FollowersModal({
       style={customStyles}
       contentLabel="Users Followers Show Modal"
       ariaHideApp={false}
-
     >
       <h3 className="Modal__heading">Followers</h3>
-
-      {status === "pending" && (
+      {loading === "pending" && (
         <span className="spinner-indicator">
           <LoadingSpinner isDefaultCss={true} size={"18"} />
         </span>
       )}
-      {status === "fulfilled" && (
-        <>
-          {followerList &&
-            followerList?.map((user) => {
-              return (
-                <UserInfoCard
-                key={user._id}
-                  isUserBioShow={false}
-                  firstName={user.firstName}
-                  lastName={user.lastName}
-                  username={user.username}
-                  isFollowBtnShow={true}
-                  avatar={user.avatar}
-                  userID={user._id}
-                />
-              );
-            })}
-        </>
-      )}
+      {followerList &&
+        loading === "fulfilled" &&
+        followerList?.map((user) => {
+          return (
+            <UserInfoCard
+              key={user._id}
+              isUserBioShow={false}
+              firstName={user.firstName}
+              lastName={user.lastName}
+              username={user.username}
+              isFollowBtnShow={true}
+              avatar={user.avatar}
+              userID={user._id}
+            />
+          );
+        })}
     </Modal>
   );
 }

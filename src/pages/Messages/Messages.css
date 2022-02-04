@@ -1,0 +1,188 @@
+.message {
+  width: 100%;
+  height: 100vh;
+  display: grid;
+  grid-template-columns: 2fr 6.5fr 2fr;
+  grid-template-rows: 5rem auto;
+  grid-template-areas:
+    "nav nav nav"
+    "friends conversation friendProfile";
+  gap: 0.5rem;
+}
+.nav {
+  grid-area: nav;
+  border: 1.5px solid #eff1f3;
+}
+
+.message__friends {
+  border: 1px solid #eff1f3;
+  height: 100%;
+  overflow-y: scroll;
+  grid-area: friends;
+  padding: 0.5rem;
+}
+.message__friends-heading {
+  text-align: center;
+  color: #d3d3da;
+  letter-spacing: 1px;
+  font-weight: 600;
+}
+.message__friends-info {
+  border: 2px solid #eff1f3;
+  margin-top: 1rem;
+  display: flex;
+  width: 100%;
+  gap: 1rem;
+  height: 2.5rem;
+  align-items: center;
+  padding-left: 1rem;
+  border-radius: 8px;
+  cursor: pointer;
+}
+
+.message__friends-avatar {
+  margin-top: 0.4rem;
+}
+.friend-info__friends-avatar {
+  border-radius: 8px;
+  width: 1.9rem;
+  height: 1.9rem;
+  object-fit: cover;
+}
+
+.message__friends-name {
+  align-self: center;
+}
+
+.message__conversation {
+  border: 1px solid #eff1f3;
+  max-height: 100%;
+  grid-area: conversation;
+  border-radius: 10px;
+  padding: 0.5rem;
+  overflow-y: hidden;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+.user {
+  display: flex;
+  justify-content: end;
+}
+
+/* main */
+.message__wrapper {
+  height: 94%;
+  overflow-y: scroll;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  scroll-behavior: smooth;
+  padding-bottom: 1rem;
+}
+
+.message__user-avatar-info {
+  width: 3%;
+}
+.message__conversation-info {
+  display: flex;
+  gap: 0.5rem;
+}
+.message__user-image {
+  width: 1.2rem;
+  height: 1.2rem;
+  object-fit: fill;
+  border-radius: 5px;
+}
+.message__user-conversation {
+  width: 50%;
+  background-color: #f1f2f6;
+  padding: 0.7rem;
+  border-radius: 8px;
+  font-size: 0.9rem;
+}
+.message__conversation-time {
+  padding-left: 1rem;
+  font-size: 0.8rem;
+}
+
+.message__conversation-input {
+  padding-bottom: 0.5rem;
+  width: 100%;
+  height: 3.2rem;
+  display: flex;
+  align-items: center;
+}
+.conversation-input {
+  border: 2px solid #eff1f3;
+  border-radius: 8px;
+  padding-left: 1rem;
+  flex-grow: 1;
+  height: 3rem;
+}
+.conversation-send__btn {
+  background-color: inherit;
+  border: none;
+  color: white;
+  font-size: 1rem;
+
+  padding: 1rem;
+}
+.conversation-send__btn:hover {
+  cursor: pointer;
+}
+
+.message__friend-profile {
+  margin-top: 1rem;
+  padding: 1rem;
+  height: fit-content;
+  width: 80%;
+  grid-area: friendProfile;
+  border: 3px solid #eff1f3;
+  justify-self: center;
+  border-radius: 8px;
+  display: flex;
+  flex-direction: column;
+  justify-items: center;
+}
+.message__friend-avatar {
+  text-align: center;
+}
+
+.friend-avatar {
+  width: 10rem;
+  height: 10rem;
+  object-fit: cover;
+}
+.message__friend-name {
+  text-align: center;
+  font-size: 1.5rem;
+  font-weight: 600;
+}
+.message__friend-status-active {
+  color: green;
+  text-align: center;
+}
+.message__friend-status-offline {
+  width: 100%;
+  color: #d12437;
+  text-align: center ;
+
+}
+.txt-center{
+text-align: center;
+}
+.message__friend-actions {
+  padding-top: 1rem;
+  text-align: center;
+}
+.show-profile-btn {
+  background-color: inherit;
+  border: none;
+  font-size: 1rem;
+  border-bottom: 1px solid black;
+}
+.show-profile-btn:hover {
+  cursor: pointer;
+  font-weight: 600;
+}

@@ -34,13 +34,16 @@ export function MessageModal({
   const { socket } = useSocket();
   const dispatch = useDispatch();
   const { userID, token } = useSelector((state) => state.users);
+  const [loading, setLoading] = useState(false);
+  const [error, setError] = useState("");
   const messageInputModalRef = useRef();
 
   function clearInputText() {
     messageInputModalRef.current.value = "";
   }
   useEffect(() => {
-    if (isMessageModal) {
+    if (isMessageModal === true) {
+      setLoading("pending");
       dispatch(
         makeAConversation({
           receiverID: receiverID,
@@ -54,13 +57,19 @@ export function MessageModal({
 
   useEffect(() => {
     if (createStatus === "fulfilled") {
-      dispatch(
-        getUserMessage({
-          conversationID: conversationRoom[0]?._id,
-          userID,
-          token,
-        })
-      );
+      try {
+        dispatch(
+          getUserMessage({
+            conversationID: conversationRoom[0]?._id,
+            userID,
+            token,
+          })
+        ).unwrap();
+        setLoading("fulfilled");
+      } catch (error) {
+        setError(error);
+        setLoading("rejected");
+      }
     }
   }, [createStatus]);
 
@@ -83,12 +92,12 @@ export function MessageModal({
       ariaHideApp={false}
     >
       <h3 className="Modal__heading"> Messages </h3>
-      {createStatus === "pending" && (
+      {loading === "pending" && (
         <span className="spinner-indicator">
           <LoadingSpinner isDefaultCss={true} size={"25"} />
         </span>
       )}
-      {createStatus === "fulfilled" && (
+      {loading === "fulfilled" && conversationRoom && (
         <>
           <ShowUserMessage />
           <div className="message__conversation-input">

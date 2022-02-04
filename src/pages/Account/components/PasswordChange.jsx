@@ -27,7 +27,7 @@ export function PasswordChange() {
         progress: undefined,
       });
     }
-  },[])
+  },[passwordChangeStatus])
   function updatePassword(data) {
     const newUserData = {
       newPassword: data.password,

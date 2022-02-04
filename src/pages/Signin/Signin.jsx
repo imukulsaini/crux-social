@@ -10,23 +10,34 @@ import { ReactComponent as BrandLogo } from "../../assets/BrandLogo.svg";
 import "./signin.css";
 
 export function SignIn() {
-  const { error, loginStatus } = useSelector(
-    (state) => state.users
-  );
+  const { error, loginStatus } = useSelector((state) => state.users);
   const {
     register,
     handleSubmit,
     formState: { errors },
+    setValue,
+    watch,
   } = useForm();
   const navigate = useNavigate();
   const { state } = useLocation();
   const dispatch = useDispatch();
+  const checkautoBox = watch("autoFill");
 
   useEffect(() => {
     if (loginStatus === "fulfilled") {
       navigate(state?.from ? state.from : "/");
     }
   }, [loginStatus]);
+
+  useEffect(() => {
+    if (checkautoBox === "yes") {
+      setValue("username", process.env.REACT_APP_USERNAME);
+      setValue("password", process.env.REACT_APP_PASSWORD);
+    } else {
+      setValue("username", "");
+      setValue("password", "");
+    }
+  }, [checkautoBox]);
 
   function userLogin(data) {
     const { username, password } = data;
@@ -74,6 +85,7 @@ export function SignIn() {
                 <label htmlFor="password" className="sign-in-label">
                   Password
                 </label>
+
                 <input
                   {...register("password", {
                     required: "This field is required",
@@ -92,6 +104,15 @@ export function SignIn() {
               {loginStatus === "rejected" && (
                 <span className="sign-in__error txt-center">{error}</span>
               )}
+              <div className="auto-fill__data">
+                <input
+                  type="checkbox"
+                  name="auto-fill__input"
+                  value="yes"
+                  {...register("autoFill")}
+                />
+                <label htmlFor="auto-fill">Auto Fill</label>
+              </div>
               <button type="submit" className="sign-in__button">
                 Sign In
                 {loginStatus === "pending" && (

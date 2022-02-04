@@ -15,7 +15,9 @@ import { UserConversationProfileInfo } from "./components/UserConversationProfil
 import "./Messages.css";
 
 export function Messages() {
-  const { conversationRoom } = useSelector((state) => state.conversation);
+  const { conversationRoom, getStatus } = useSelector(
+    (state) => state.conversation
+  );
   const [conversationID, setConversationID] = useState("");
   const { socket } = useSocket();
   const messageInputRef = useRef();
@@ -50,19 +52,25 @@ export function Messages() {
       <NavBar />
       <section className="message__friends">
         <div className="message__friends-heading">conversation</div>
-
-        {conversationRoom?.map((room, index) => {
-          return (
-            <div key={room._id} className="message__con-room">
-              <ConversationRoom
-                key={room.id}
-                members={room.members}
-                roomID={room._id}
-                setID={setConversationID}
-              />
-            </div>
-          );
-        })}
+        {getStatus === "pending" && (
+          <span className="spinner-indicator">
+            <LoadingSpinner isDefaultCss={true} size={"25"} />
+          </span>
+        )}
+        {getStatus === "fulfilled" &&
+          conversationRoom &&
+          conversationRoom?.map((room, index) => {
+            return (
+              <div key={room._id} className="message__con-room">
+                <ConversationRoom
+                  key={room.id}
+                  members={room.members}
+                  roomID={room._id}
+                  setID={setConversationID}
+                />
+              </div>
+            );
+          })}
       </section>
 
       <section className="message__conversation">
@@ -74,7 +82,7 @@ export function Messages() {
             placeholder="send message"
           />
           <SendMessageBtn
-            inputValue={messageInputRef.current}
+            inputValue={messageInputRef}
             conversationID={conversationID}
             clearInputText={clearInputText}
           />

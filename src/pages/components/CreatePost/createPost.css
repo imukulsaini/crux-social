@@ -1,0 +1,89 @@
+.create-post {
+  margin-top: 1rem;
+  padding: 0.7rem;
+  background-color: #ffffff;
+  box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.05);
+  border-radius: 0.8rem;
+  box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
+}
+
+.create-post__header {
+  padding: 0.5rem;
+  font-style: normal;
+  font-weight: 600;
+  font-size: 1rem;
+  line-height: 18px;
+  color: #4f4f4f;
+  border-bottom: 1.5px solid #e0e0e0;
+}
+.create-post__main {
+  display: flex;
+  padding-top: 1rem;
+  gap: 1.2rem;
+}
+.create-post__avatar-image {
+  width: 2.3rem;
+  height: 2.3rem;
+  border-radius: 4px;
+  object-fit: cover;
+}
+.create-post__actions {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+}
+.create-post__tweet-area {
+  height: 6rem;
+}
+
+.create-post__input-tweet {
+  resize: none;
+  font-size: 0.85rem;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  box-sizing: border-box;
+  padding: 5px 10px;
+  outline: none;
+  width: 95%;
+  height: 85%;
+  margin-bottom: 0.5rem;
+}
+
+.create-post__actions-input {
+  display: flex;
+  justify-content: space-between;
+}
+.create-post__input-file > input {
+  display: none;
+}
+.file-input__name {
+  display: inline-block;
+  overflow: hidden;
+  max-width: 7.5rem;
+  color: #4f4f4f;
+  margin-left: 1rem;
+  font-size: 0.8rem;
+}
+.create-post__actions-button {
+  padding-left: 1rem;
+  display: flex;
+  gap: 1rem;
+}
+
+.icon-bd-none {
+  background-color: inherit;
+  border: none;
+  cursor: pointer;
+}
+.crete-post__tweet-button {
+  cursor: pointer;
+  margin-right: 2rem;
+  letter-spacing: 1px;
+  width: 5rem;
+  height: 2rem;
+  border: none;
+  box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.05);
+  border-radius: 4px;
+  background: #2f80ed;
+  color: #ffffff;
+}

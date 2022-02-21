@@ -1,9 +1,17 @@
  
 ## Live Project - [Crux](https://crux-social.netlify.app/login)
 ## Backend - [Link](https://github.com/imukulsaini/social-backend)
+
 # Credentials
 * username : zoldyck21
 * password : password1@
+
+# Environment variables
+* REACT_APP_API_KEY 
+* REACT_APP_CLOUDNARY_KEY 
+* REACT_APP_CLOUDNARY_PRESET 
+* REACT_APP_USERNAME 
+* REACT_APP_PASSWORD 
 
 # Tech Stack 
 

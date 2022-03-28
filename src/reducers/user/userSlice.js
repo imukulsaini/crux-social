@@ -43,7 +43,9 @@ const userSlice = createSlice({
     updateProfileData: (state, action) => {
       state.profileData = action.payload.data;
     },
-
+    changeUpdateStatus: (state, action) => {
+      state.profileUpdateStatus = action.payload;
+    },
     followProfile: (state, action) => {
       if (state.userID === action.payload.result.followerID) {
         state.userData.following.push(action.payload.profile);
@@ -195,6 +197,7 @@ export const {
   followProfile,
   unFollowProfile,
   logout,
+  changeUpdateStatus,
 } = userSlice.actions;
 
 export default userSlice.reducer;

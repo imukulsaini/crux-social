@@ -48,9 +48,15 @@ const userSlice = createSlice({
     },
     followProfile: (state, action) => {
       if (state.userID === action.payload.result.followerID) {
-        state.userData.following.push(action.payload.profile);
-        if (state?.profileData._id === state.userID) {
-          state?.profileData?.following?.push(action.payload.profile);
+        const isUserInFollowing = state.userData.following.includes(
+          action.payload.result.followingID
+        );
+        if (!isUserInFollowing) {
+          state.userData.following.push(action.payload.profile);
+
+          if (state?.profileData._id === state.userID) {
+            state?.profileData?.following?.push(action.payload.profile);
+          }
         }
       }
       if (state.profileData._id === action.payload.result.followingID) {

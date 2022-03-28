@@ -27,14 +27,14 @@ export function LikePost({ postID, postBy, checkIsPostLikeByUser }) {
   }
 
   return (
-    <div className="post__actions-likes pst-action">
-      <button
-        onClick={() => {
-          !checkIsPostLikeByUser && likePostNotification();
-          dispatch(likePost({ userID, token, postID }));
-        }}
-        className="post__actions-like-btn icon-bd-none"
-      >
+    <div
+      onClick={() => {
+        !checkIsPostLikeByUser && likePostNotification();
+        dispatch(likePost({ userID, token, postID }));
+      }}
+      className="post__actions-likes pst-action"
+    >
+      <button className="post__actions-like-btn icon-bd-none">
         <BiHeart size="1.5rem" />
       </button>
       <span className="post__actions-name pst-action-name">Like</span>

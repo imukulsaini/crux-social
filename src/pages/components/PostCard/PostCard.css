@@ -36,7 +36,7 @@
   letter-spacing: -0.035em;
   color: #37393a;
 }
-.post__owner-name:hover{
+.post__owner-name:hover {
   text-decoration: underline;
   cursor: pointer;
 }
@@ -93,6 +93,7 @@
 }
 .pst-action {
   display: flex;
+  cursor: pointer;
 }
 .post__comments-user {
   display: flex;
@@ -107,4 +108,8 @@
 .user-comment-avatar {
   width: 30px;
   height: 30px;
+}
+.dec-none{
+  text-decoration: none;
+  color:black;
 }

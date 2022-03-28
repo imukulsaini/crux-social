@@ -23,9 +23,6 @@ export function PostID() {
   }, [token, postID]) ;
 
 
- console.log("postID page")
-
-
   return (
     <div className="post-id">
       <NavBar />

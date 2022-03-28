@@ -15,8 +15,8 @@
 }
 .post-id__main {
   background-color: #fafafa;
-
   grid-area: postIdMain;
+  margin-bottom: 1rem;
 }
 .back__action-btn {
   margin-top: 1rem;

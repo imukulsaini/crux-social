@@ -45,7 +45,7 @@ function App() {
     if (isUserLogin && socket) {
       socket.on("getNewNotification", (notification) => {
         toast(`${notification}`, {
-          position: "top-right",
+          position: "bottom-right",
           autoClose: false,
           hideProgressBar: true,
           closeOnClick: true,
@@ -98,7 +98,7 @@ function App() {
         <PrivateRoute path="/post/:postID" element={<PostID />} />
         <PrivateRoute path="/messages" element={<Messages />} />
         <PrivateRoute path="/notifications" element={<Notification />} />
-        <PrivateRoute path="/search" element={<Search />}/>
+        <PrivateRoute path="/search" element={<Search />} />
 
         <PrivateRoute path="/settings" element={<AccountSettings />}>
           <Route index element={<ProfileSettings />} />
@@ -107,7 +107,6 @@ function App() {
           <Route path="delete" element={<DeleteUserAccount />} />
           <Route path="*" element={<NoMatch />} />
         </PrivateRoute>
-        
 
         <PrivateRoute path="/:username" element={<ProfilePage />}>
           <PrivateRoute index element={<UserPostsShow />} />

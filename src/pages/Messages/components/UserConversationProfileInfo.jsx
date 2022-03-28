@@ -11,13 +11,10 @@ export function UserConversationProfileInfo({ roomID }) {
   } = useSelector((state) => state.users);
   const [userInfo, setUser] = useState(null);
   const navigate = useNavigate();
-  const { isUserActive ,users} = useSocket();
-  const [checkUserActive ,setStatus] = useState(false);
-
+  const { isUserActive, users } = useSocket();
+  const [checkUserActive, setStatus] = useState(false);
 
   function getUserProfileInfo() {
-
-
     const getConversationRoom = conversationRoom?.find(
       (room) => room._id === roomID
     );
@@ -35,11 +32,10 @@ export function UserConversationProfileInfo({ roomID }) {
     }
   }, [roomID]);
 
-
   useEffect(() => {
-    if(userInfo){
-      const isActive=  userInfo && isUserActive(userInfo._id);
-      setStatus(isActive)
+    if (userInfo) {
+      const isActive = userInfo && isUserActive(userInfo._id);
+      setStatus(isActive);
     }
   }, [users, userInfo]);
   return (
@@ -48,7 +44,9 @@ export function UserConversationProfileInfo({ roomID }) {
         <img
           className="friend-avatar"
           alt="user"
-          src={userInfo?.avatar || NoProfilePic}
+          src={
+            roomID ? userInfo?.avatar || NoProfilePic : avatar || NoProfilePic
+          }
         />
       </div>
       <div className="message__friend-name">
@@ -62,11 +60,13 @@ export function UserConversationProfileInfo({ roomID }) {
       {checkUserActive && (
         <span className="message__friend-status-active txt-center">Active</span>
       )}
-      {!checkUserActive&&
-      (
+      {!checkUserActive && (
         <span
-        hidden={userInfo === null}
-        className="message__friend-status-offline txt-center">Offline</span>
+          hidden={userInfo === null}
+          className="message__friend-status-offline txt-center"
+        >
+          Offline
+        </span>
       )}
       <div className="message__friend-actions">
         <button

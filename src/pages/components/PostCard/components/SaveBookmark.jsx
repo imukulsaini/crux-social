@@ -14,12 +14,14 @@ export function SaveBookMark({ postID }) {
     });
   }
   return (
-    <div className="post__actions-saved pst-action">
+    <div
+    onClick={() => {
+      addBookmarkNotification();
+      dispatch(saveBookmark({ userID, token, postID }));
+    }}
+    className="post__actions-saved pst-action">
       <button
-        onClick={() => {
-          addBookmarkNotification();
-          dispatch(saveBookmark({ userID, token, postID }));
-        }}
+
         className="post__actions-save-btn icon-bd-none"
       >
         <BiBookmark size="1.5rem" />

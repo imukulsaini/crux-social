@@ -7,7 +7,7 @@ export function UnLikePost({ postID, postLikes }) {
   const { userID, token } = useSelector((state) => state.users);
   const { socket } = useSocket();
   const dispatch = useDispatch();
-  
+
   function unlikeNotification() {
     socket.emit("unLikePost", {
       userID: userID,
@@ -15,13 +15,16 @@ export function UnLikePost({ postID, postLikes }) {
     });
   }
   return (
-    <div className="post__actions-likes pst-action">
+    <div
+      onClick={() => {
+        unlikeNotification();
+        dispatch(unLikePost({ userID, token, postID }));
+      }}
+      className="post__actions-likes pst-action"
+    >
       <button
         // disabled={postLikes <= 0}
-        onClick={() => {
-          unlikeNotification();
-          dispatch(unLikePost({ userID, token, postID }));
-        }}
+
         className="post__actions-like-btn icon-bd-none"
       >
         <BiHeart size="1.5rem" color="red" />

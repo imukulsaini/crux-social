@@ -8,7 +8,7 @@ export function PostComments({ postID }) {
   const dispatch = useDispatch();
   const { comments, getStatus } = useSelector((state) => state.postComments);
   useEffect(() => {
-    if (postID) {
+    if (postID && getStatus !== 'fulfilled') {
       dispatch(getPostComments(postID));
     }
   }, [postID]);

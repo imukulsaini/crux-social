@@ -111,15 +111,15 @@ export function PostCard({
         </div>
 
         <div className="post__actions-info ">
-          <div className="post__actions-comments pst-action">
-            <Link
-              to={`/post/${post._id}`}
-              className="post__actions-comments-btn icon-bd-none"
-            >
+          <Link
+            to={`/post/${post._id}`}
+            className="post__actions-comments pst-action dec-none"
+          >
+            <span className="post__actions-comments-btn icon-bd-none">
               <GoComment size="1.5rem" />
-            </Link>
+            </span>
             <span className="post__actions-name pst-action-name">Comments</span>
-          </div>
+          </Link>
 
           {isLikeIconShow && (
             <>

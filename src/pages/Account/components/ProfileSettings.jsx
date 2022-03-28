@@ -1,15 +1,16 @@
 import { useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
 import { useDispatch, useSelector } from "react-redux";
-import { changeAvatar } from "../../../reducers/user/userSlice";
+import {
+  changeAvatar,
+  changeUpdateStatus,
+} from "../../../reducers/user/userSlice";
 import { updateUserData } from "../../../api/user/userApi";
 import { uploadPicOnCloudnary } from "../../../api/cloudnary/cloudnary";
 import { CLOUDNARY_PRESET } from "../../../utils";
 import { LoadingSpinner } from "../../components/Spinner/LoadingSpinner";
 import { toast } from "react-toastify";
 import NoProfilePic from "../../../assets/NoProfilePic.png";
-
-  
 
 export function ProfileSettings() {
   const { setValue, handleSubmit, register, getValues } = useForm();
@@ -36,6 +37,7 @@ export function ProfileSettings() {
         hideProgressBar: true,
         progress: undefined,
       });
+      dispatch(changeUpdateStatus("idle"));
     }
   }, [profileUpdateStatus]);
 
@@ -82,7 +84,7 @@ export function ProfileSettings() {
               <img
                 className="create-post__avatar-image"
                 alt=""
-                src={userData.avatar ||NoProfilePic}
+                src={userData.avatar || NoProfilePic}
               />
             </div>
             <input type="file" {...register("profilePic")} />

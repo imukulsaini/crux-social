@@ -6,6 +6,9 @@
 * username : zoldyck21
 * password : password1@
 
+* username:mukulsaini
+* password:mukulsaini1@
+
 # Environment variables
 * REACT_APP_API_KEY 
 * REACT_APP_CLOUDNARY_KEY 

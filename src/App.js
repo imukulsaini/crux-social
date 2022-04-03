@@ -46,7 +46,7 @@ function App() {
       socket.on("getNewNotification", (notification) => {
         toast(`${notification}`, {
           position: "bottom-right",
-          autoClose: false,
+          autoClose: 5000,
           hideProgressBar: true,
           closeOnClick: true,
           pauseOnHover: true,

@@ -9,7 +9,7 @@ import { v4 as uuidv4 } from "uuid";
 
 export function PostCreateComment({ postCommentRoom }) {
   const params = useParams();
-
+  const { postsID } = useSelector((state) => state.posts);
   const { userID, token, userData } = useSelector((state) => state.users);
   const [comment, setComment] = useState("");
   const inputCommentRef = useRef();
@@ -23,7 +23,9 @@ export function PostCreateComment({ postCommentRoom }) {
   useEffect(() => {
     if (postCommentRoom && socket) {
       socket.on("newCommentAdded", (newComment) => {
-        dispatch(newCommentAdded(newComment));
+        if (postsID._id === newComment.postID) {
+          dispatch(newCommentAdded(newComment));
+        }
       });
     }
     return () => {

@@ -8,42 +8,31 @@ export function PostComments({ postID }) {
   const dispatch = useDispatch();
   const { comments, getStatus } = useSelector((state) => state.postComments);
   useEffect(() => {
-    if (postID && getStatus !== 'fulfilled') {
+    if (postID) {
       dispatch(getPostComments(postID));
     }
-  }, [postID]);
+  }, [postID]); 
   return (
     <>
       {getStatus === "pending" && (
-        <span
-        key={"commentsShow"}
-        className="spinner-indicator">
+        <span key={"commentsShow"} className="spinner-indicator">
           <LoadingSpinner isDefaultCss={false} color={"black"} size={"15"} />
         </span>
       )}
       {getStatus === "fulfilled" &&
         comments?.map((comment) => (
-          <div
-          key={comment._id}
-
-          className="post__comments-info">
-            <div 
-            className="post__comments-container">
-              <span 
-
-              className="post__comments-owner">
+          <div key={comment._id} className="post__comments-info">
+            <div className="post__comments-container">
+              <span className="post__comments-owner">
                 {comment?.commentBy?.username}
               </span>
-              <span 
-
-              className="post-comment">{comment?.comment}</span>
+              <span className="post-comment">{comment?.comment}</span>
             </div>
-            <span 
-            className="post__comments-time">
+            <span className="post__comments-time">
               {format(comment?.createdAt)}
             </span>
           </div>
         ))}
-</>
+    </>
   );
 }
